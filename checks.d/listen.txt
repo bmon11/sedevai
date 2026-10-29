@@ -1,0 +1,12 @@
+# listen module: audio, chat, reports
+GET /api/topics/aaaaaaaaaaaaaaaaaaaaaaa1/audio 404
+GET /api/topics/not-an-id/audio 404
+GET /api/topics/aaaaaaaaaaaaaaaaaaaaaaa1/audio/0.mp3 404
+POST /api/chat 400 {}
+POST /api/chat 400 {"message":"","topicId":"zz"}
+POST /api/chat 404 {"message":"Юу болсон бэ?","topicId":"aaaaaaaaaaaaaaaaaaaaaaa1"}
+LOGIN
+GET /api/admin/reports 200
+GET /api/admin/reports?days=3 200
+GET /api/admin/reports?days=91 400
+GET /api/admin/reports?days=abc 400

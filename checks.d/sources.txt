@@ -1,0 +1,14 @@
+# sources module (admin sources CRUD, recalc weights, probe validation)
+LOGIN
+GET /api/admin/sources 200
+GET /api/admin/sources/nope 404
+POST /api/admin/sources 400 {"slug":"Bad Slug"}
+POST /api/admin/sources 400 {"slug":"x","name":"X","url":"http://x.mn/","discovery":{"type":"html","urls":["https://x.mn/"]},"article":{}}
+POST /api/admin/sources 201 {"slug":"test-src","name":"Тест","url":"https://example.mn/","discovery":{"type":"html","urls":["https://example.mn/"]},"article":{}}
+POST /api/admin/sources 409 {"slug":"test-src","name":"Тест","url":"https://example.mn/","discovery":{"type":"html","urls":["https://example.mn/"]},"article":{}}
+PUT /api/admin/sources/000000000000000000000000 404 {"slug":"test-src","name":"Тест","url":"https://example.mn/","discovery":{"type":"html","urls":["https://example.mn/"]},"article":{}}
+DELETE /api/admin/sources/000000000000000000000000 404
+DELETE /api/admin/sources/bad-id 404
+POST /api/admin/sources/recalculate-weights 200 {"dryRun":true}
+POST /api/admin/sources/recalculate-weights 400 {"days":0}
+POST /api/admin/sources/probe 400 {"slug":"x"}

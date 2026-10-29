@@ -1,0 +1,34 @@
+# pipeline module: public editions/topics/feed, admin topics, runs
+GET /api/editions 200
+GET /api/editions?region=world 200
+GET /api/editions?region=x 400
+GET /api/editions/latest 404
+GET /api/editions/latest?region=world 404
+GET /api/editions/000000000000000000000000 404
+GET /api/editions/bad-id 404
+GET /api/topics/000000000000000000000000 404
+GET /api/topics/bad-id 404
+GET /api/feed 200
+GET /api/feed?limit=0 400
+GET /api/feed?limit=51 400
+GET /api/feed?region=world&limit=5 200
+GET /api/admin/runs 401
+POST /api/admin/runs 401 {"kind":"social"}
+GET /api/admin/topics 401
+PUT /api/admin/topics/000000000000000000000000/visibility 401 {"hidden":true}
+LOGIN
+GET /api/admin/runs 200
+GET /api/admin/runs?kind=news 200
+GET /api/admin/runs?kind=nope 400
+GET /api/admin/runs/000000000000000000000000 404
+GET /api/admin/runs/bad-id 404
+POST /api/admin/runs 400 {"kind":"nope"}
+POST /api/admin/runs 202 {"kind":"social"}
+POST /api/admin/runs/000000000000000000000000/resume 404
+POST /api/admin/runs/bad-id/resume 404
+GET /api/admin/topics 200
+PUT /api/admin/topics/000000000000000000000000 400 {"title":"","reason":"x","category":"economy"}
+PUT /api/admin/topics/000000000000000000000000 400 {"title":"T","reason":"x","category":"nope"}
+PUT /api/admin/topics/000000000000000000000000 404 {"title":"T","reason":"x","category":"economy"}
+PUT /api/admin/topics/000000000000000000000000/visibility 400 {"hidden":"yes"}
+PUT /api/admin/topics/000000000000000000000000/visibility 404 {"hidden":true}

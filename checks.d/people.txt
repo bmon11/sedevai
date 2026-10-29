@@ -1,0 +1,35 @@
+# people module: auth, users, settings, lenses, entities, articles (core checks already signed in, so no 401 checks here)
+POST /api/auth/login 400 {}
+POST /api/auth/login 401 {"username":"nobody","password":"x"}
+GET /api/entities 200
+GET /api/entities/nobody 404
+GET /api/entities/nobody/mentions 404
+GET /api/articles 200
+GET /api/articles?limit=0 400
+GET /api/articles?limit=61 400
+GET /api/articles/sources 200
+LOGIN
+GET /api/admin/users 200
+POST /api/admin/users 400 {"username":"x"}
+POST /api/admin/users 201 {"username":"peopletest","password":"peoplepass1","role":"editor"}
+POST /api/admin/users 409 {"username":"peopletest","password":"peoplepass1","role":"editor"}
+PUT /api/admin/users/000000000000000000000000 404 {"username":"peopletest","role":"editor"}
+DELETE /api/admin/users/000000000000000000000000 404
+PUT /api/auth/password 400 {"currentPassword":"wrong","newPassword":"newpass123"}
+GET /api/admin/settings 200
+PUT /api/admin/settings 400 {"topicsPerRun":99}
+GET /api/admin/lenses 200
+POST /api/admin/lenses 400 {"key":"Bad"}
+POST /api/admin/lenses 201 {"key":"testlens","label":"Тест","instruction":"Тест заавар энд байна","format":"text"}
+POST /api/admin/lenses 409 {"key":"testlens","label":"Тест","instruction":"Тест заавар энд байна","format":"text"}
+PUT /api/admin/lenses/order 200 {"ids":[]}
+PUT /api/admin/lenses/000000000000000000000000 404 {"key":"testlens","label":"Тест","instruction":"Тест заавар энд байна","format":"text"}
+DELETE /api/admin/lenses/000000000000000000000000 404
+GET /api/admin/entities 200
+POST /api/admin/entities 400 {"slug":"x"}
+POST /api/admin/entities 201 {"slug":"test-person","name":"Тест Хүн","shortName":"Т.Хүн","aliases":["Тестхүн"]}
+GET /api/entities/test-person 200
+GET /api/entities/test-person/mentions 200
+GET /api/entities/test-person/mentions?role=bad 400
+PUT /api/admin/entities/000000000000000000000000 404 {"slug":"test-person","name":"Тест Хүн","shortName":"Т.Хүн","aliases":["Тестхүн"]}
+POST /api/auth/logout 204

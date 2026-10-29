@@ -1,0 +1,3 @@
+#!/bin/sh
+# runs the auto check before every commit (opt in: git config core.hooksPath tools/hooks)
+./check.sh > /tmp/sedev-check.log 2>&1 || { tail -20 /tmp/sedev-check.log; echo "check.sh failed - commit aborted"; exit 1; }

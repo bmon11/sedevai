@@ -1,0 +1,13 @@
+# pages_reader: reader pages + their assets
+GET / 200
+GET /archive 200
+GET /editions/000000000000000000000000 200
+GET /people 200
+GET /people/nobody 200
+GET /social 200
+GET /topics/000000000000000000000000 200
+GET /manifest.webmanifest 200
+GET /reader.css 200
+GET /reader.js 200
+GET /sw.js 200
+GET /assets/icons/empty/ic-content.svg 200

@@ -1,0 +1,16 @@
+# social
+GET /api/social/trending 200
+GET /api/social/trending?limit=500 400
+GET /api/social/trending?platform=tiktok 400
+GET /api/admin/social/accounts 401
+LOGIN
+GET /api/admin/social/accounts 200
+GET /api/admin/social/posts 200
+GET /api/admin/social/posts?limit=0 400
+POST /api/admin/social/accounts 400 {"platform":"x","url":"https://www.facebook.com/ikon.mn","name":"iKon"}
+POST /api/admin/social/accounts 400 {"platform":"facebook","url":"https://www.facebook.com/","name":"iKon"}
+POST /api/admin/social/accounts 201 {"platform":"facebook","url":"https://www.facebook.com/ikon.mn/","name":"iKon","kind":"media","weight":1.5}
+POST /api/admin/social/accounts 409 {"platform":"facebook","url":"https://www.facebook.com/IKON.mn","name":"iKon"}
+PUT /api/admin/social/accounts/000000000000000000000000 404 {"platform":"x","url":"https://x.com/a","name":"A"}
+DELETE /api/admin/social/accounts/000000000000000000000000 404
+POST /api/admin/social/accounts/probe 400 {"platform":"x","url":"https://x.com/a","name":"A"}

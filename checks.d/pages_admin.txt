@@ -1,0 +1,15 @@
+# pages_admin: signs in as the test superadmin first
+LOGIN
+GET /admin 302
+GET /admin/login 302
+GET /admin/topics 200
+GET /admin/reports 200
+GET /admin/people 200
+GET /admin/runs 200
+GET /admin/runs/000000000000000000000000 200
+GET /admin/sources 200
+GET /admin/social 200
+GET /admin/lenses 200
+GET /admin/settings 200
+GET /admin/users 200
+GET /admin/nope 404

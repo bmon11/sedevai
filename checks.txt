@@ -1,0 +1,7 @@
+# core
+GET /api/health 200
+GET /api/nope 404
+GET /nope-page 404
+GET /api/auth/me 401
+LOGIN
+GET /api/auth/me 200
